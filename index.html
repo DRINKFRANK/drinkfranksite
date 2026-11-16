@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FRANK. | Coming soon</title>
+<meta name="description" content="FRANK. Proper cocktails. Honest ingredients. Coming soon.">
+<link rel="preload" href="fonts/archivo-900.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* Archivo is the FRANK. brand font, served from this folder */
+@font-face{font-family:Archivo;src:url(fonts/archivo-500.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Archivo;src:url(fonts/archivo-700.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Archivo;src:url(fonts/archivo-900.woff2) format("woff2");font-weight:900;font-display:swap}
+
+:root{--red:#b10116;--bg:#f58ba2;--cream:#fff7eb;--ink:#141414;--white:#fff;--pad:clamp(20px,4vw,56px)}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+
+/* ---------- First screen: logo, pour, banner ---------- */
+.first{min-height:100vh;min-height:100svh;display:flex;flex-direction:column}
+header{padding:16px 18px 0;position:relative;z-index:3}
+.brand{width:clamp(150px,15vw,220px)}
+.hero{position:relative;flex:1;min-height:460px;display:flex;align-items:center;overflow:hidden}
+.pour{position:absolute;left:0;bottom:0;width:min(62vw,940px,calc((100svh - 150px) * 1.44));}
+.copy{position:relative;z-index:2;margin-left:auto;width:min(40%,560px);padding:0 var(--pad) 48px 0;margin-right:clamp(0px,4vw,64px)}
+.eyebrow{margin:0 0 22px;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:36px;height:2px;background:currentColor}
+h1{margin:0;font-weight:900;font-size:clamp(56px,min(8vw,14vh),132px);line-height:.88;letter-spacing:-.035em;text-transform:uppercase;color:var(--red);margin-left:-.045em}
+.tagline{margin:26px 0 0 .4em;font-weight:700;font-size:clamp(20px,1.9vw,28px);line-height:1.3;letter-spacing:-.005em}
+/* Drawings from the original artwork, scattered around the words (never on them). Cut edges sit flush with the page edge, as in the artwork */
+.first{position:relative}
+.dd{position:absolute;z-index:1;pointer-events:none;margin:0}
+.dd img{display:block;width:100%;animation:drift 9s ease-in-out infinite}
+.dd.a img,.dd.b img{animation:none}
+.dd.a{top:0;left:31%;width:clamp(120px,13vw,200px)}
+.dd.b{top:7%;right:0;width:clamp(84px,8.5vw,130px)}
+.dd.c{top:23%;left:48%;width:clamp(64px,6vw,92px);transform:rotate(-10deg)}
+.dd.c img{animation-delay:-3s}
+.dd.d{bottom:15%;right:25%;width:clamp(90px,8vw,124px);transform:rotate(150deg) scaleX(-1)}
+.dd.d img{animation-delay:-5s;animation-duration:11s}
+.dd.e{bottom:16%;right:4%;width:clamp(64px,6vw,90px);transform:rotate(12deg) scaleX(-1)}
+.dd.e img{animation-delay:-7s}
+@keyframes drift{50%{transform:translateY(-10px) rotate(-4deg)}}
+
+.ticker{background:var(--red);color:#fff;overflow:hidden;white-space:nowrap}
+.track{display:flex;align-items:center;width:max-content;animation:marquee 32s linear infinite}
+.track span{flex:none;padding:16px 26px;font-weight:700;font-size:13px;letter-spacing:.16em}
+.track img{height:24px;flex:none}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- Let's be frank: the tray sits on a giant outlined FRANK. ---------- */
+.frank{background:var(--white);text-align:center;padding:clamp(64px,8vw,112px) var(--pad) clamp(56px,7vw,96px);overflow:hidden}
+.frank h2{margin:0;font-weight:900;font-size:clamp(44px,6.5vw,104px);line-height:.9;letter-spacing:-.035em;text-transform:uppercase;color:var(--red)}
+.stage{position:relative;display:grid;place-items:center;margin:clamp(16px,2.5vw,32px) 0 clamp(28px,3.5vw,48px)}
+.word{grid-area:1/1;font-weight:900;font-size:min(24vw,380px);line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px rgba(177,1,22,.5);white-space:nowrap;
+  transform:translateX(calc(var(--sp,0) * -4vw))}
+.tray{grid-area:1/1;position:relative;width:min(34vw,400px);filter:drop-shadow(18px 26px 30px rgba(20,20,20,.22));transform:rotate(calc(var(--sp,0) * -4deg))}
+.frank p{margin:0;font-weight:900;font-size:clamp(24px,3vw,46px);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;color:var(--red)}
+/* ---------- Sign-up: one compact band ---------- */
+.list{padding:clamp(28px,3.5vw,44px) var(--pad)}
+.list .reveal{display:flex;flex-direction:column;align-items:flex-start;gap:20px;max-width:1180px;margin:0 auto}
+/* Heading, line and email box share one left edge */
+.list h2{margin:0;font-weight:900;font-size:clamp(28px,3vw,44px);line-height:.95;letter-spacing:-.035em;text-transform:uppercase;color:var(--red)}
+.list p{margin:8px 0 0 .15em;font-weight:500;font-size:16px;line-height:1.35}
+.list form{display:flex;gap:10px;width:min(100%,560px);flex-wrap:wrap}
+.list input[type=email]{flex:1;min-width:0;font:500 16px Archivo,Arial,sans-serif;padding:15px 20px;border:2px solid var(--ink);border-radius:999px;background:var(--cream);color:var(--ink);outline:none}
+.list input[type=email]:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(177,1,22,.15)}
+.list button{font:700 13px Archivo,Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:0 24px;border:0;border-radius:999px;background:var(--red);color:#fff;cursor:pointer;transition:background .2s}
+.list button:hover{background:#8e0012}
+.msg{flex-basis:100%;min-height:0;margin:0 0 0 20px;font-weight:700;font-size:14px;color:var(--red)}
+.msg:empty{display:none}
+
+footer{background:var(--red);color:#fff;display:flex;justify-content:space-between;gap:20px;padding:22px var(--pad);font-size:12px;font-weight:700;letter-spacing:.06em}
+
+/* ---------- Motion: calm entrances ---------- */
+@keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes slide{from{opacity:0;translate:-32px 0}to{opacity:1;translate:0 0}}
+.copy>*{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
+.copy>:nth-child(2){animation-delay:.08s}.copy>:nth-child(3){animation-delay:.18s}
+.pour{animation:slide 1.2s cubic-bezier(.2,.7,.2,1) both}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@media(max-width:860px){
+  header{padding:12px 14px 0}
+  .hero{flex-direction:column;align-items:stretch;justify-content:space-between;min-height:0}
+  .copy{order:-1;width:auto;margin:auto 0;padding:28px 20px 12px}
+  h1{font-size:clamp(52px,15vw,96px)}
+  .pour{position:relative;width:132%;max-width:none;transform:none}
+  /* Phone: drawings follow the words, beside SOON. and beside the tagline, never on the photo */
+  .dd.a{left:auto;right:17vw;width:24vw}
+  .dd.b{top:calc(58px + 4vw);width:17vw}
+  .dd.c{top:calc(128px + 26.4vw);left:auto;right:6vw;width:min(14vw,58px)}
+  .dd.d,.dd.e{display:none}
+  .tray{width:46vw}
+  .word{font-size:21vw}
+  .list button{padding:16px;flex-basis:100%}
+  footer{flex-direction:column;gap:8px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.pour,.word,.tray{transform:none}}
+</style>
+</head>
+<body>
+<div class="first">
+  <div class="dd a" aria-hidden="true"><img src="assets/doodle-dandelion.png" alt=""></div>
+  <div class="dd b" aria-hidden="true"><img src="assets/doodle-artichoke.png" alt=""></div>
+  <div class="dd c" aria-hidden="true"><img src="assets/doodle-acerola.png" alt=""></div>
+  <div class="dd d" aria-hidden="true"><img src="assets/doodle-dandelion.png" alt=""></div>
+  <div class="dd e" aria-hidden="true"><img src="assets/doodle-acerola.png" alt=""></div>
+  <header><img class="brand" src="assets/logo.png" alt="FRANK."></header>
+  <main class="hero">
+    <img class="pour" src="assets/pour.jpg" alt="A FRANK. can being poured into a glass">
+    <div class="copy">
+      <h1>Coming<br>soon.</h1>
+      <p class="tagline">Let’s cut the BS.<br>Proper cocktails.<br>Honest ingredients.</p>
+    </div>
+  </main>
+  <div class="ticker" aria-hidden="true"><div class="track">
+    <span>FRANK.</span><img src="assets/doodle-cactus-white.png" alt=""><span>PROPER COCKTAILS</span><img src="assets/doodle-cactus-white.png" alt=""><span>HONEST INGREDIENTS</span><img src="assets/doodle-cactus-white.png" alt=""><span>COMING SOON</span><img src="assets/doodle-cactus-white.png" alt="">
+    <span>FRANK.</span><img src="assets/doodle-cactus-white.png" alt=""><span>PROPER COCKTAILS</span><img src="assets/doodle-cactus-white.png" alt=""><span>HONEST INGREDIENTS</span><img src="assets/doodle-cactus-white.png" alt=""><span>COMING SOON</span><img src="assets/doodle-cactus-white.png" alt="">
+    <span>FRANK.</span><img src="assets/doodle-cactus-white.png" alt=""><span>PROPER COCKTAILS</span><img src="assets/doodle-cactus-white.png" alt=""><span>HONEST INGREDIENTS</span><img src="assets/doodle-cactus-white.png" alt=""><span>COMING SOON</span><img src="assets/doodle-cactus-white.png" alt="">
+    <span>FRANK.</span><img src="assets/doodle-cactus-white.png" alt=""><span>PROPER COCKTAILS</span><img src="assets/doodle-cactus-white.png" alt=""><span>HONEST INGREDIENTS</span><img src="assets/doodle-cactus-white.png" alt=""><span>COMING SOON</span><img src="assets/doodle-cactus-white.png" alt="">
+  </div></div>
+</div>
+
+<section class="frank">
+  <h2 class="reveal">Let’s be frank.</h2>
+  <div class="stage">
+    <div class="word" aria-hidden="true">FRANK.</div>
+    <img class="tray" src="assets/ice-tray.webp" alt="A FRANK. can on ice">
+  </div>
+  <p class="reveal">It’s about time for an upgrade.</p>
+</section>
+
+<section class="list">
+  <div class="reveal">
+    <div>
+      <h2>Get the first sip.</h2>
+      <p>Enter your email and you’ll be the first to know when FRANK. drops.</p>
+    </div>
+    <form name="waitlist" method="POST">
+      <p hidden><label>Leave this empty <input name="bot-field"></label></p>
+      <input type="email" name="email" placeholder="Your email" required aria-label="Your email">
+      <button type="submit">Count me in</button>
+      <p class="msg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer><span>© FRANK. · For adults aged 18+ · Please drink responsibly.</span><span>drinkfrank.co.uk</span></footer>
+
+<script>
+(function(){
+var root=document.documentElement,calm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* The big outlined FRANK. slides slowly as you scroll past it */
+var ice=document.querySelector('.frank');
+function sp(){var r=ice.getBoundingClientRect(),p=1-(r.top+r.height/2)/(innerHeight/2+r.height/2);root.style.setProperty('--sp',Math.max(-1,Math.min(1,p)).toFixed(3));}
+if(!calm){addEventListener('scroll',sp,{passive:true});sp();}
+/* Sections fade up as they arrive */
+var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.25});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+/* Sign-ups go to the FRANK. waitlist Google Sheet */
+/* Paste the Google Apps Script web app link here (ends in /exec) */
+var SHEET_URL='https://script.google.com/macros/s/AKfycbwCK6EPYF2QtTQQ2xajNp3fJkmfOmAqqle2hTQ_D4uOKV5w3y5AJ4onCtrIZUjclpCM/exec';
+var f=document.querySelector('form[name=waitlist]'),msg=document.querySelector('.msg');
+f.addEventListener('submit',function(e){e.preventDefault();
+  if(window.FRANK_PREVIEW){msg.textContent='You’re on the list. Cheers!';f.reset();return;}
+  var body=new URLSearchParams(new FormData(f)).toString(),done=function(){msg.textContent='You’re on the list. Cheers!';f.reset();},fail=function(){msg.textContent='That didn’t go through. Please try again.';};
+  /* Each email goes to the FRANK. waitlist Google Sheet */
+  fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(done,fail);});
+})();
+</script>
+</body>
+</html>
