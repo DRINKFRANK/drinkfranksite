@@ -12,7 +12,7 @@
 @font-face{font-family:Archivo;src:url(archivo-700.woff2) format("woff2");font-weight:700;font-display:swap}
 @font-face{font-family:Archivo;src:url(archivo-900.woff2) format("woff2");font-weight:900;font-display:swap}
 
-:root{--red:#b10116;--bg:#f58ba2;--cream:#fff7eb;--ink:#141414;--white:#fff;--pad:clamp(20px,4vw,56px)}
+:root{--red:#b10116;--green:#2e6b3c;--lilac:#8c76b2;--pom:#a3172e;--bg:#eae3cf;--cream:#f7f3e8;--band:#e0d8c1;--ink:#141414;--white:#eae3cf;--pad:clamp(20px,4vw,56px)}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -27,8 +27,8 @@ header{padding:16px 18px 0;position:relative;z-index:3}
 .copy{position:relative;z-index:2;margin-left:auto;width:min(40%,560px);padding:0 var(--pad) 48px 0;margin-right:clamp(0px,4vw,64px)}
 .eyebrow{margin:0 0 22px;font-weight:700;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:12px}
 .eyebrow::before{content:"";width:36px;height:2px;background:currentColor}
-h1{margin:0;font-weight:900;font-size:clamp(56px,min(8vw,14vh),132px);line-height:.88;letter-spacing:-.035em;text-transform:uppercase;color:var(--red);margin-left:-.045em}
-.tagline{margin:26px 0 0 .4em;font-weight:700;font-size:clamp(20px,1.9vw,28px);line-height:1.3;letter-spacing:-.005em}
+h1{margin:0;font-weight:900;font-size:clamp(46px,min(6.4vw,12vh),100px);line-height:.88;letter-spacing:-.035em;text-transform:uppercase;color:var(--red);margin-left:-.045em}
+.tagline{margin:22px 0 0 .4em;font-weight:700;font-size:clamp(18px,1.6vw,24px);line-height:1.3;letter-spacing:-.005em}
 /* Drawings from the original artwork, scattered around the words (never on them). Cut edges sit flush with the page edge, as in the artwork */
 .first{position:relative}
 .dd{position:absolute;z-index:1;pointer-events:none;margin:0}
@@ -38,13 +38,28 @@ h1{margin:0;font-weight:900;font-size:clamp(56px,min(8vw,14vh),132px);line-heigh
 .dd.b{top:7%;right:0;width:clamp(84px,8.5vw,130px)}
 .dd.c{top:23%;left:48%;width:clamp(64px,6vw,92px);transform:rotate(-10deg)}
 .dd.c img{animation-delay:-3s}
-.dd.d{bottom:15%;right:25%;width:clamp(90px,8vw,124px);transform:rotate(150deg) scaleX(-1)}
+.dd.d{bottom:15%;right:25%;width:clamp(97px,8.65vw,134px);transform:rotate(150deg) scaleX(-1)}
 .dd.d img{animation-delay:-5s;animation-duration:11s}
 .dd.e{bottom:16%;right:4%;width:clamp(64px,6vw,90px);transform:rotate(12deg) scaleX(-1)}
 .dd.e img{animation-delay:-7s}
 @keyframes drift{50%{transform:translateY(-10px) rotate(-4deg)}}
 
 .ticker{background:var(--red);color:#fff;overflow:hidden;white-space:nowrap}
+/* Dotted strip, like the top and bottom of the can */
+.dots{border-block:2px dotted var(--ink);overflow:hidden;white-space:nowrap;font-weight:700;font-size:12px;letter-spacing:.16em}
+.dots .track{animation-duration:48s;animation-direction:reverse}
+.dots .track span{padding:9px 0;font-size:12px;letter-spacing:.16em}.dots .track span::after{content:"\2022";padding:0 1.6em}
+
+/* ---------- The range: one colour per flavour ---------- */
+.range{padding:clamp(56px,7vw,96px) var(--pad)}
+.range h2{margin:0 0 clamp(24px,3vw,40px);text-align:center;font-weight:900;font-size:clamp(30px,3.6vw,56px);line-height:.9;letter-spacing:-.035em;text-transform:uppercase;color:var(--red)}
+.flavours{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,24px);max-width:1180px;margin:0 auto}
+.fl{--c:var(--pom);position:relative;overflow:hidden;background:var(--c);color:#fff;padding:clamp(22px,2.6vw,34px);min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.fl:hover{transform:translateY(-6px) rotate(-1deg)}
+.fl.lyc{--c:var(--lilac)}.fl.lim{--c:var(--green)}
+.fl small{font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.fl h3{margin:10px 0 0;font-weight:900;font-size:clamp(20px,1.9vw,28px);line-height:.95;letter-spacing:-.03em;text-transform:uppercase}
+.fl img{position:absolute;top:14px;right:10px;width:80px;opacity:.9;filter:brightness(0) invert(1)}
 .track{display:flex;align-items:center;width:max-content;animation:marquee 32s linear infinite}
 .track span{flex:none;padding:16px 26px;font-weight:700;font-size:13px;letter-spacing:.16em}
 .track img{height:24px;flex:none}
@@ -52,17 +67,17 @@ h1{margin:0;font-weight:900;font-size:clamp(56px,min(8vw,14vh),132px);line-heigh
 
 /* ---------- Let's be frank: the tray sits on a giant outlined FRANK. ---------- */
 .frank{background:var(--white);text-align:center;padding:clamp(64px,8vw,112px) var(--pad) clamp(56px,7vw,96px);overflow:hidden}
-.frank h2{margin:0;font-weight:900;font-size:clamp(44px,6.5vw,104px);line-height:.9;letter-spacing:-.035em;text-transform:uppercase;color:var(--red)}
+.frank h2{margin:0;font-weight:900;font-size:clamp(36px,5vw,80px);line-height:.9;letter-spacing:-.035em;text-transform:uppercase;color:var(--red)}
 .stage{position:relative;display:grid;place-items:center;margin:clamp(16px,2.5vw,32px) 0 clamp(28px,3.5vw,48px)}
-.word{grid-area:1/1;font-weight:900;font-size:min(24vw,380px);line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.5px rgba(177,1,22,.5);white-space:nowrap;
+.word{grid-area:1/1;font-weight:900;font-size:min(20vw,320px);line-height:1;letter-spacing:-.04em;color:transparent;-webkit-text-stroke:1.2px var(--red);white-space:nowrap;
   transform:translateX(calc(var(--sp,0) * -4vw))}
-.tray{grid-area:1/1;position:relative;width:min(34vw,400px);filter:drop-shadow(18px 26px 30px rgba(20,20,20,.22));transform:rotate(calc(var(--sp,0) * -4deg))}
-.frank p{margin:0;font-weight:900;font-size:clamp(24px,3vw,46px);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;color:var(--red)}
+.tray{grid-area:1/1;position:relative;width:min(28vw,340px);filter:drop-shadow(18px 26px 30px rgba(20,20,20,.22));transform:rotate(calc(var(--sp,0) * -4deg))}
+.frank p{margin:0;font-weight:900;font-size:clamp(20px,2.4vw,36px);line-height:.95;letter-spacing:-.03em;text-transform:uppercase;color:var(--red)}
 /* ---------- Sign-up: one compact band ---------- */
-.list{padding:clamp(28px,3.5vw,44px) var(--pad)}
+.list{padding:clamp(28px,3.5vw,48px) var(--pad);background:var(--band)}
 .list .reveal{display:flex;flex-direction:column;align-items:flex-start;gap:20px;max-width:1180px;margin:0 auto}
 /* Heading, line and email box share one left edge */
-.list h2{margin:0;font-weight:900;font-size:clamp(28px,3vw,44px);line-height:.95;letter-spacing:-.035em;text-transform:uppercase;color:var(--red)}
+.list h2{margin:0;font-weight:900;font-size:clamp(26px,2.6vw,38px);line-height:.95;letter-spacing:-.035em;text-transform:uppercase;color:var(--red)}
 .list p{margin:8px 0 0 .15em;font-weight:500;font-size:16px;line-height:1.35}
 .list form{display:flex;gap:10px;width:min(100%,560px);flex-wrap:wrap}
 .list input[type=email]{flex:1;min-width:0;font:500 16px Archivo,Arial,sans-serif;padding:15px 20px;border:2px solid var(--ink);border-radius:999px;background:var(--cream);color:var(--ink);outline:none}
@@ -72,7 +87,42 @@ h1{margin:0;font-weight:900;font-size:clamp(56px,min(8vw,14vh),132px);line-heigh
 .msg{flex-basis:100%;min-height:0;margin:0 0 0 20px;font-weight:700;font-size:14px;color:var(--red)}
 .msg:empty{display:none}
 
-footer{background:var(--red);color:#fff;display:flex;justify-content:space-between;gap:20px;padding:22px var(--pad);font-size:12px;font-weight:700;letter-spacing:.06em}
+
+/* Sign-up with the spilled bottle beside it */
+.list .sip{display:grid;grid-template-columns:minmax(0,560px) auto;justify-content:center;align-items:center;gap:clamp(32px,7vw,120px);max-width:1180px;margin:0 auto}
+.sip-copy{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.spill-art img{height:clamp(260px,26vw,360px);width:auto;margin:0 auto;transform-origin:85% 4%;animation:sway 7s ease-in-out infinite}
+.spill-art .spill{transform-origin:78% 8%;animation:sway 7s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(-1.6deg)}}
+.spill-art .drip{animation:drip 3.6s ease-in infinite}.spill-art .drip.b{animation-delay:1.5s}
+@keyframes drip{0%{transform:translateY(-8px);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translateY(46px);opacity:0}}
+@media(max-width:860px){.list .sip{grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start}.spill-art img{height:180px}.list .sip-copy h2{font-size:26px}}
+@media(max-width:520px){.list .sip{grid-template-columns:1fr}.spill-art{order:-1}.spill-art img{height:170px}}
+
+/* ===== Vintage print layer ===== */
+/* Paper grain over the whole page, like an old printed poster */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.22;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* Poster frame round the first screen: a thick rule with a thin one inside */
+.first::after{content:"";position:absolute;inset:12px;border:3px solid var(--ink);box-shadow:inset 0 0 0 5px var(--bg),inset 0 0 0 6.5px var(--ink);pointer-events:none;z-index:4}
+header{padding:34px 34px 0}
+/* The photo printed like an old ad */
+.kicker{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
+.kicker::before,.kicker::after{content:"";height:1.5px;width:28px;background:currentColor}
+.tagline .q{display:block;color:var(--red);font-size:1.25em;margin-bottom:6px}
+/* Let's be frank: a red poster with a cream double frame (Aperol-style) */
+.frank{background:var(--bg)}
+.frank .poster{position:relative;max-width:980px;margin:0 auto;background:var(--red);box-shadow:inset 0 0 0 10px var(--red),inset 0 0 0 12px var(--bg),inset 0 0 0 18px var(--red),inset 0 0 0 19px var(--bg);color:var(--bg);padding:clamp(44px,6vw,80px) clamp(18px,4vw,56px) clamp(40px,5vw,64px);overflow:hidden}
+.frank .poster h2,.frank .poster p{color:var(--bg)}
+.frank .poster .word{-webkit-text-stroke:1.2px rgba(243,241,236,.55);font-size:min(15vw,190px)}
+.frank .poster .tray{filter:drop-shadow(14px 22px 26px rgba(0,0,0,.35))}
+/* Halftone dots fading in from the poster corners */
+.frank .poster::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
+  background:radial-gradient(circle,var(--ink) 1.2px,transparent 1.6px) 0 0/9px 9px;
+  -webkit-mask:radial-gradient(ellipse at 100% 100%,#000 0,transparent 45%),radial-gradient(ellipse at 0 0,#000 0,transparent 40%);mask:radial-gradient(ellipse at 100% 100%,#000 0,transparent 45%),radial-gradient(ellipse at 0 0,#000 0,transparent 40%)}
+/* Sign-up framed like an old bottle label */
+@media(max-width:860px){.first::after{inset:8px}.frank .poster h2{font-size:30px}.frank .poster p{font-size:19px}.frank .poster .word{font-size:16vw}}
+footer{background:var(--red);color:#fff;display:flex;justify-content:space-between;gap:20px;padding:12px var(--pad);font-size:12px;font-weight:700;letter-spacing:.06em}
 
 /* ---------- Motion: calm entrances ---------- */
 @keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
@@ -87,19 +137,83 @@ footer{background:var(--red);color:#fff;display:flex;justify-content:space-betwe
   header{padding:12px 14px 0}
   .hero{flex-direction:column;align-items:stretch;justify-content:space-between;min-height:0}
   .copy{order:-1;width:auto;margin:auto 0;padding:28px 20px 12px}
-  h1{font-size:clamp(52px,15vw,96px)}
-  .pour{position:relative;width:132%;max-width:none;transform:none}
+  h1{font-size:clamp(40px,12vw,64px)}
+  .tagline{font-size:17px}
+  .pour{position:relative;width:112%;max-width:none;transform:none}
   /* Phone: drawings follow the words, beside SOON. and beside the tagline, never on the photo */
   .dd.a{left:auto;right:17vw;width:24vw}
   .dd.b{top:calc(58px + 4vw);width:17vw}
   .dd.c{top:calc(128px + 26.4vw);left:auto;right:6vw;width:min(14vw,58px)}
   .dd.d,.dd.e{display:none}
-  .tray{width:46vw}
-  .word{font-size:21vw}
+  .tray{width:40vw}
+  .flavours{grid-template-columns:1fr}
+  .fl{min-height:140px}
+  .fl h3{font-size:21px;padding-right:64px}
+  .fl img{width:56px;top:12px}
+  .word{font-size:18vw}
   .list button{padding:16px;flex-basis:100%}
   footer{flex-direction:column;gap:8px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.pour,.word,.tray{transform:none}}
+@media(max-width:860px){header{padding:30px 26px 0}.copy{padding:22px 26px 12px}}
+header{position:relative;z-index:5}
+@font-face{font-family:"Abril Fatface";src:url(abril-fatface.woff2) format("woff2");font-display:swap}
+/* Hand-lettered headlines (vintage poster feel). Everything else stays Archivo. */
+h1,.frank .poster h2,.list h2{font-family:"Abril Fatface",Georgia,serif;font-weight:400;letter-spacing:0}h1{line-height:.92}
+@media(max-width:860px){h1{font-size:clamp(42px,12.5vw,64px)}.frank .poster h2{font-size:32px}}
+/* illustrations stay still */
+.dd img,.spill-art img,.spill-art .spill,.spill-art .drip{animation:none!important}.dd img{transform:none}.word,.tray{transform:none!important}
+
+/* vintage label */
+.frank .poster.label{box-shadow:none;overflow:visible}
+.frank .poster.label::before{display:none}
+.frank .poster.label>*{position:relative;z-index:2}
+.frank .label .est,.frank .label .no{font:700 11px/1 Archivo,Arial,sans-serif!important;letter-spacing:.32em!important;text-transform:uppercase}
+.frank .label .est{margin:0 0 clamp(14px,1.6vw,22px)}
+.frank .label .no{margin:clamp(20px,2.4vw,34px) 0 0}
+.frank .label .stage{margin:clamp(18px,2.4vw,34px) auto}
+.frank .label .tray{width:min(24vw,300px)}
+@media(max-width:860px){.frank .label .tray{width:52vw}.frank .label .est,.frank .label .no{font-size:10px!important;letter-spacing:.24em!important}}
+
+.frank .poster.label{--c:34px;background:transparent;max-width:860px;clip-path:polygon(var(--c) 0,calc(100% - var(--c)) 0,100% var(--c),100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,var(--c) 100%,0 calc(100% - var(--c)),0 var(--c))}
+.frank .poster.label::before,.frank .poster.label::after{content:"";display:block;position:absolute;pointer-events:none;opacity:1;background:none}
+.frank .poster.label::before{inset:0;background:var(--red);z-index:0;clip-path:none;-webkit-mask:none;mask:none}
+.frank .poster.label::after{--i:14px;--w:1.5px;inset:var(--i);z-index:1;background:var(--bg);
+ clip-path:polygon(calc(var(--c) - var(--i)*.41) 0,calc(100% - var(--c) + var(--i)*.41) 0,100% calc(var(--c) - var(--i)*.41),100% calc(100% - var(--c) + var(--i)*.41),calc(100% - var(--c) + var(--i)*.41) 100%,calc(var(--c) - var(--i)*.41) 100%,0 calc(100% - var(--c) + var(--i)*.41),0 calc(var(--c) - var(--i)*.41),
+ calc(var(--c) - var(--i)*.41) 0,calc(var(--c) - var(--i)*.41 + var(--w)*.41) var(--w),var(--w) calc(var(--c) - var(--i)*.41 + var(--w)*.41),var(--w) calc(100% - var(--c) + var(--i)*.41 - var(--w)*.41),calc(var(--c) - var(--i)*.41 + var(--w)*.41) calc(100% - var(--w)),calc(100% - var(--c) + var(--i)*.41 - var(--w)*.41) calc(100% - var(--w)),calc(100% - var(--w)) calc(100% - var(--c) + var(--i)*.41 - var(--w)*.41),calc(100% - var(--w)) calc(var(--c) - var(--i)*.41 + var(--w)*.41),calc(100% - var(--c) + var(--i)*.41 - var(--w)*.41) var(--w),calc(var(--c) - var(--i)*.41 + var(--w)*.41) var(--w),calc(var(--c) - var(--i)*.41) 0)}
+.frank .label .est,.frank .label .no{color:var(--bg)!important;opacity:.85}
+@media(max-width:860px){.frank .poster.label{--c:22px}.frank .poster.label::after{--i:9px}}
+
+/* compact sign-up, spaced like the poster section */
+.list{padding:clamp(36px,3.4vw,50px) var(--pad) clamp(36px,3.4vw,50px)}
+.list .sip{display:block;max-width:600px;margin:0 auto;text-align:center}
+.list .sip-copy{align-items:center}
+.list .sip-copy p{margin-left:0}
+.list form{margin:0 auto}
+/* hand-drawn outline round the email box */
+.list .field{position:relative;flex:1;min-width:0;display:flex}
+.list .field input[type=email]{flex:1;border-color:transparent;background:transparent;position:relative;z-index:1}
+.list .field input[type=email]:focus{border-color:transparent;box-shadow:none}
+.doodle-line{position:absolute;inset:-2px;width:calc(100% + 4px);height:calc(100% + 4px);overflow:visible;pointer-events:none;z-index:2}
+.doodle-line path{fill:none;stroke:var(--ink);stroke-width:2.6px;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.doodle-line path.b{stroke-width:1.4px;opacity:.9}
+.list .field:focus-within .doodle-line path{stroke:var(--red)}
+.list .field::before{content:"";position:absolute;inset:3px;border-radius:999px;background:var(--cream);z-index:0}
+@media(max-width:860px){.list .field{flex-basis:100%}}
+
+/* doodles peeking out from behind the label */
+.labelwrap{position:relative;max-width:860px;margin:0 auto}
+.labelwrap .poster{z-index:1}
+.side-dd{position:absolute;z-index:0;pointer-events:none;height:auto}
+.side-dd.l{width:clamp(110px,11vw,160px);left:clamp(-120px,-8vw,-80px);top:22%;transform:rotate(-24deg)}
+.side-dd.r{width:clamp(130px,13vw,190px);right:clamp(-130px,-9vw,-90px);bottom:14%;transform:rotate(-150deg) scaleX(-1)}
+@media(max-width:860px){.side-dd.l{width:96px;left:-62px}.side-dd.r{width:110px;right:-70px}}
+@media(max-width:520px){.side-dd{display:none}}
+
+/* the subtle halftone dots, back on the red label */
+.frank .poster.label>.halftone{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.22;
+  background:radial-gradient(circle,var(--ink) 1.2px,transparent 1.6px) 0 0/9px 9px;
+  -webkit-mask:radial-gradient(ellipse at 100% 100%,#000 0,transparent 45%),radial-gradient(ellipse at 0 0,#000 0,transparent 40%);mask:radial-gradient(ellipse at 100% 100%,#000 0,transparent 45%),radial-gradient(ellipse at 0 0,#000 0,transparent 40%)}
 </style>
 </head>
 <body>
@@ -107,45 +221,49 @@ footer{background:var(--red);color:#fff;display:flex;justify-content:space-betwe
   <div class="dd a" aria-hidden="true"><img src="doodle-dandelion.png" alt=""></div>
   <div class="dd b" aria-hidden="true"><img src="doodle-artichoke.png" alt=""></div>
   <div class="dd c" aria-hidden="true"><img src="doodle-acerola.png" alt=""></div>
-  <div class="dd d" aria-hidden="true"><img src="doodle-dandelion.png" alt=""></div>
+  <div class="dd d" aria-hidden="true"><img src="doodle-dandelion-full.png" alt=""></div>
   <div class="dd e" aria-hidden="true"><img src="doodle-acerola.png" alt=""></div>
   <header><img class="brand" src="logo.png" alt="FRANK."></header>
   <main class="hero">
     <img class="pour" src="pour.jpg" alt="A FRANK. can being poured into a glass">
     <div class="copy">
+      <p class="kicker">A proper vodka &amp; tequila cocktail</p>
       <h1>Coming<br>soon.</h1>
-      <p class="tagline">Let’s cut the BS.<br>Proper cocktails.<br>Honest ingredients.</p>
+      <p class="tagline">Proper cocktails.<br>Honest ingredients.</p>
     </div>
   </main>
-  <div class="ticker" aria-hidden="true"><div class="track">
-    <span>FRANK.</span><img src="doodle-cactus-white.png" alt=""><span>PROPER COCKTAILS</span><img src="doodle-cactus-white.png" alt=""><span>HONEST INGREDIENTS</span><img src="doodle-cactus-white.png" alt=""><span>COMING SOON</span><img src="doodle-cactus-white.png" alt="">
-    <span>FRANK.</span><img src="doodle-cactus-white.png" alt=""><span>PROPER COCKTAILS</span><img src="doodle-cactus-white.png" alt=""><span>HONEST INGREDIENTS</span><img src="doodle-cactus-white.png" alt=""><span>COMING SOON</span><img src="doodle-cactus-white.png" alt="">
-    <span>FRANK.</span><img src="doodle-cactus-white.png" alt=""><span>PROPER COCKTAILS</span><img src="doodle-cactus-white.png" alt=""><span>HONEST INGREDIENTS</span><img src="doodle-cactus-white.png" alt=""><span>COMING SOON</span><img src="doodle-cactus-white.png" alt="">
-    <span>FRANK.</span><img src="doodle-cactus-white.png" alt=""><span>PROPER COCKTAILS</span><img src="doodle-cactus-white.png" alt=""><span>HONEST INGREDIENTS</span><img src="doodle-cactus-white.png" alt=""><span>COMING SOON</span><img src="doodle-cactus-white.png" alt="">
-  </div></div>
+  
 </div>
 
-<section class="frank">
+<section class="frank"><div class="labelwrap">
+<img class="side-dd l" src="doodle-artichoke.png" alt="" aria-hidden="true">
+<img class="side-dd r" src="doodle-dandelion-full.png" alt="" aria-hidden="true">
+<div class="poster label">
+  <span class="halftone" aria-hidden="true"></span>
+  <p class="est">Est. 2026</p>
   <h2 class="reveal">Let’s be frank.</h2>
   <div class="stage">
-    <div class="word" aria-hidden="true">FRANK.</div>
     <img class="tray" src="ice-tray.webp" alt="A FRANK. can on ice">
   </div>
   <p class="reveal">It’s about time for an upgrade.</p>
-</section>
+  <p class="no">Female founded</p>
+</div></div></section>
 
+<div class="dots" aria-hidden="true"><div class="track"><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span><span>8% ABV</span><span>NO ADDED SUGAR</span></div></div>
 <section class="list">
-  <div class="reveal">
+  <div class="sip reveal">
+    <div class="sip-copy">
     <div>
       <h2>Get the first sip.</h2>
       <p>Enter your email and you’ll be the first to know when FRANK. drops.</p>
     </div>
     <form name="waitlist" method="POST">
       <p hidden><label>Leave this empty <input name="bot-field"></label></p>
-      <input type="email" name="email" placeholder="Your email" required aria-label="Your email">
+      <span class="field"><input type="email" name="email" placeholder="Your email" required aria-label="Your email"><svg class="doodle-line" viewBox="0 0 400 53" preserveAspectRatio="none" aria-hidden="true"><path d="M40,3 C110,0 200,6 290,2 C335,1 372,3 386,8 C399,14 399,38 388,46 C374,53 320,49 250,51 C170,53 90,48 30,51 C9,51 1,40 2,25 C3,10 14,4 38,3 C60,2 72,4 80,5"/><path d="M18,9 C30,1 120,6 210,4 C300,2 360,7 382,5 C396,9 397,30 394,40 C388,51 300,47 200,49 C120,50 50,47 20,46 C5,42 4,22 9,13" class="b"/></svg></span>
       <button type="submit">Count me in</button>
       <p class="msg" role="status"></p>
     </form>
+  </div>
   </div>
 </section>
 
