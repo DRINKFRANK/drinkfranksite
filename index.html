@@ -38,7 +38,8 @@ h1{margin:0;font-weight:900;font-size:clamp(46px,min(6.4vw,12vh),100px);line-hei
 .dd.b{top:7%;right:0;width:clamp(84px,8.5vw,130px)}
 .dd.c{top:23%;left:48%;width:clamp(64px,6vw,92px);transform:rotate(-10deg)}
 .dd.c img{animation-delay:-3s}
-.dd.d{bottom:15%;right:25%;width:clamp(97px,8.65vw,134px);transform:rotate(150deg) scaleX(-1)}
+/* Sits just under the tagline (inside the words block), so it can never land on the text whatever the screen size */
+.copy>.dd.d{animation:none;top:100%;bottom:auto;right:auto;left:26%;margin-top:-22px;width:clamp(90px,7.5vw,124px);transform:rotate(150deg) scaleX(-1)}
 .dd.d img{animation-delay:-5s;animation-duration:11s}
 .dd.e{bottom:16%;right:4%;width:clamp(64px,6vw,90px);transform:rotate(12deg) scaleX(-1)}
 .dd.e img{animation-delay:-7s}
@@ -108,6 +109,8 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opa
 header{padding:34px 34px 0}
 /* The photo printed like an old ad */
 .kicker{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink)}
+@media(min-width:861px) and (max-width:1240px){.kicker{letter-spacing:.12em;white-space:nowrap}.kicker::before,.kicker::after{width:18px}}
+@media(max-width:520px){.kicker{font-size:10px;letter-spacing:.12em;white-space:nowrap;gap:8px}.kicker::before,.kicker::after{width:14px}}
 .kicker::before,.kicker::after{content:"";height:1.5px;width:28px;background:currentColor}
 .tagline .q{display:block;color:var(--red);font-size:1.25em;margin-bottom:6px}
 /* Let's be frank: a red poster with a cream double frame (Aperol-style) */
@@ -221,7 +224,6 @@ h1,.frank .poster h2,.list h2{font-family:"Abril Fatface",Georgia,serif;font-wei
   <div class="dd a" aria-hidden="true"><img src="doodle-dandelion.png" alt=""></div>
   <div class="dd b" aria-hidden="true"><img src="doodle-artichoke.png" alt=""></div>
   <div class="dd c" aria-hidden="true"><img src="doodle-acerola.png" alt=""></div>
-  <div class="dd d" aria-hidden="true"><img src="doodle-dandelion-full.png" alt=""></div>
   <div class="dd e" aria-hidden="true"><img src="doodle-acerola.png" alt=""></div>
   <header><img class="brand" src="logo.png" alt="FRANK."></header>
   <main class="hero">
@@ -230,6 +232,7 @@ h1,.frank .poster h2,.list h2{font-family:"Abril Fatface",Georgia,serif;font-wei
       <p class="kicker">A proper vodka &amp; tequila cocktail</p>
       <h1>Coming<br>soon.</h1>
       <p class="tagline">Proper cocktails.<br>Honest ingredients.</p>
+      <div class="dd d" aria-hidden="true"><img src="doodle-dandelion-full.png" alt=""></div>
     </div>
   </main>
   
@@ -287,7 +290,12 @@ f.addEventListener('submit',function(e){e.preventDefault();
   if(window.FRANK_PREVIEW){msg.textContent='You’re on the list. Cheers!';f.reset();return;}
   var body=new URLSearchParams(new FormData(f)).toString(),done=function(){msg.textContent='You’re on the list. Cheers!';f.reset();},fail=function(){msg.textContent='That didn’t go through. Please try again.';};
   /* Each email goes to the FRANK. waitlist Google Sheet */
-  fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(done,fail);});
+  /* Read the sheet's answer so a broken link shows an error instead of a fake "you're on the list".
+     If the browser can't read the answer, send it the old blind way (the sheet ignores repeat emails). */
+  var blind=function(){return fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(done,fail);};
+  fetch(SHEET_URL,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body})
+    .then(function(r){return r.text();})
+    .then(function(t){t=String(t).trim();if(t==='ok'||t==='already'||t==='ignored')done();else{fail();if(window.console)console.warn('Waitlist answer:',t.slice(0,200));}},blind);});
 })();
 </script>
 </body>
